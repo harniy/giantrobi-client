@@ -66,7 +66,7 @@ export default function Main() {
             <h2>User @{username} connected</h2>
           </div>
           <div className="connected__info-img">
-          <img src={`http://localhost:5000/${userImg}`} className="connected__img" />
+          <img src={`${process.env.REACT_APP_SERVER}/${userImg}`} className="connected__img" />
             </div>
         </div>
       )}
