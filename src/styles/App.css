@@ -57,6 +57,14 @@
     object-fit: contain;
 }
 
+.connected__info-link {
+    font-weight: 700;
+    text-decoration: none;
+    color: #727272;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 550px) {
     .connected__info-img {
         width: 80%;

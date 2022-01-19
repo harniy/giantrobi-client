@@ -13,17 +13,23 @@ export default function Main() {
   const { userLogin } = useAuthApi();
 
   //use when TWITTER set access api
-  /*     const handleConnect = async () => {
+      const handleConnect = async () => {
             const provider = new TwitterAuthProvider();
     
             signInWithPopup(authentication, provider)
                 .then(res => {
-                    console.log(res)
+                  const username = res.user.reloadUserInfo.screenName
+
+                  return username
+                })
+                .then(username => {
+                  userLogginHandle(username)
                 })
                 .catch(error => console.log(error))
-        } */
+        }
 
-  const userLogginHandle = async () => {
+  const userLogginHandle = async (username) => {
+    console.log('start')
     setIsLoading(true);
     const data = await userLogin(username);
 
@@ -41,18 +47,10 @@ export default function Main() {
         <div className="connect__section-block">
           <button
             className="connect__section-button"
-            onClick={userLogginHandle}
+            onClick={handleConnect}
           >
             Connect with Twitter
           </button>
-
-          <div className="connect__section-input">
-            <input
-              type="text"
-              placeholder="username"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
         </div>
       )}
 
@@ -61,9 +59,9 @@ export default function Main() {
       {userImg && (
         <div className="connected__info">
           <div className="connected__info-section">
-            <h2>Success</h2>
+            <h2>Alright! You just created an NFT for your Twitter URL</h2>
 
-            <h2>User @{username} connected</h2>
+            <a className="connected__info-link" href={`https://twitter.com/${username}`} target="_blank">twitter.com/{username}</a>
           </div>
           <div className="connected__info-img">
           <img src={`${process.env.REACT_APP_SERVER}/${userImg}`} className="connected__img" />
