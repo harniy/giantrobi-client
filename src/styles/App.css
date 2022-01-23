@@ -42,6 +42,10 @@
     flex-direction: column;
 }
 
+.connect__section-error {
+    color: #ff5050;
+  }
+
 .connect__section-input {
     margin: 20px 0;
     text-align: center;
@@ -64,6 +68,7 @@
     font-size: 2rem;
     cursor: pointer;
 }
+
 
 @media screen and (max-width: 550px) {
     .connected__info-img {

@@ -9,6 +9,7 @@ export default function Main() {
   const [userImg, setUserImg] = useState("");
   const [username, setUsername] = useState("snoopdogg");
   const [isLoading, setIsLoading] = useState(false);
+  const [connectError, setConnectError] = useState(false)
 
   const { userLogin } = useAuthApi();
 
@@ -25,7 +26,10 @@ export default function Main() {
                 .then(username => {
                   userLogginHandle(username)
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                  setConnectError(true)
+                  console.log(error)
+                })
         }
 
   const userLogginHandle = async (username) => {
@@ -51,8 +55,12 @@ export default function Main() {
           >
             Connect with Twitter
           </button>
+
+      {connectError && <div className="connect__section-error">Username or password is incorrect! Pls try agayn</div>}
+
         </div>
       )}
+
 
       {isLoading && <Loader />}
 
