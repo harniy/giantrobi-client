@@ -1,5 +1,6 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { authentication } from "../firebase-config";
+import { TwitterAuthProvider, signInWithPopup } from "firebase/auth";
 
 export default function AuthApi() {
 
@@ -10,5 +11,35 @@ export default function AuthApi() {
         return data
     }
 
-    return { userLogin }
+    const userLogginHandle = async (username) => {
+        console.log('start')
+        const data = await userLogin(username);
+    
+        const user = await data.json();
+    
+        return user
+      };
+
+    const handleConnect = async () => {
+        const provider = new TwitterAuthProvider();
+
+        const user = signInWithPopup(authentication, provider)
+            .then(res => {
+              const username = res.user.reloadUserInfo.screenName
+              return username
+            })
+            .then(username => {
+              const data = userLogginHandle(username)
+
+              return data
+            })
+            .catch(error => {
+              return {error: error}
+            })
+
+            return await user
+    }
+
+
+    return { userLogin, handleConnect }
 }

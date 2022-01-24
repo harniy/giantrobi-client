@@ -56,7 +56,7 @@ export default function Main() {
             Connect with Twitter
           </button>
 
-      {connectError && <div className="connect__section-error">Username or password is incorrect! Pls try agayn</div>}
+      {connectError && <div className="connect__section-error">Username or password is incorrect! Pls try again</div>}
 
         </div>
       )}
